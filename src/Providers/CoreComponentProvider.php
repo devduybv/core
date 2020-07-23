@@ -26,6 +26,10 @@ class CoreComponentProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__ . '/../routes.php');
+        $this->loadRoutesFrom(__DIR__ . '/../Routes/web.php');
+        $this->loadRoutesFrom(__DIR__ . '/../Routes/api.php');
+         $this->publishes([
+            __DIR__ . '/../../config/core.php'           => config_path('core.php'),
+        ]);
     }
 }
