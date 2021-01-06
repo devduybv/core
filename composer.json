@@ -9,16 +9,34 @@
     "description": "Webpress Core Module",
     "autoload": {
         "psr-4": {
-            "VCComponent\\Laravel\\Vicoders\\Core\\": "src"
+            "VCComponent\\Laravel\\Vicoders\\Core\\": "src",
+            "Dingo\\Api\\": "modules/api/src/",
+            "Tymon\\JWTAuth\\": "modules/jwt-auth/src/",
+            "Prettus\\Repository\\": "modules/l5-repository/src/Prettus/Repository/"
+        },
+        "files": [
+            "modules/api/src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Dingo\\Api\\Tests\\": "modules/api/tests/",
+            "Tymon\\JWTAuth\\Test\\": "modules/api/tests/"
         }
     },
     "require": {
-        "dingo/api": "v3.0.0",
-        "prettus/l5-repository": "2.6.45",
-        "lcobucci/jwt":"3.3.3",
-        "tymon/jwt-auth": "1.0.0",
         "league/flysystem-aws-s3-v3": "1.0.25",
-        "league/flysystem-cached-adapter": "1.0.9"
+        "league/flysystem-cached-adapter": "1.0.9",
+        "dingo/blueprint": "0.4.2",
+        "illuminate/routing": "^7.0|^8.0",
+        "illuminate/support": "^7.0|^8.0",
+        "league/fractal": "0.19.2",
+        "illuminate/auth": "^7.0",
+        "illuminate/contracts": "^7.0",
+        "illuminate/http": "^7.0",
+        "lcobucci/jwt": "3.3.3",
+        "namshi/jose": "7.2.3",
+        "nesbot/carbon": "^1.0 || ^2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "8.5.13",
@@ -28,8 +46,15 @@
     "prefer-stable": true,
     "extra": {
         "laravel": {
+            "aliases": {
+                "JWTAuth": "Tymon\\JWTAuth\\Facades\\JWTAuth",
+                "JWTFactory": "Tymon\\JWTAuth\\Facades\\JWTFactory"
+            },
             "providers": [
-                "VCComponent\\Laravel\\Vicoders\\Core\\Providers\\CoreComponentProvider"
+                "VCComponent\\Laravel\\Vicoders\\Core\\Providers\\CoreComponentProvider",
+                "Dingo\\Api\\Provider\\LaravelServiceProvider",
+                "Tymon\\JWTAuth\\Providers\\LaravelServiceProvider",
+                "Prettus\\Repository\\Providers\\RepositoryServiceProvider"
             ]
         }
     }
